@@ -82,10 +82,12 @@ void printMatrix(int **matrix, int size) {
 //_________________________________________________________________________________________________
 
 void freeMatrix(int **matrix, int size) {
-  for(int i = 0; i < size; i++) { 
-    free( *(matrix + i) );
-    }
-    free( matrix);
+  //for(int i = 0; i < size; i++) { esta linea se puede plantear distinto
+  //lo que se quiere es "eliminar" la matriz para evitar acumulaciones de momoria inutil, es mejor pensarlo directamente como
+        (void)size; //porque la medida size esta vinculada a todo lo demas, si se elimina, lo demas, ni se ejecuta
+        free( *(matrix + 0));// ya que i no existe, asignar 0 evita errores
+    //}
+        free( matrix);
 }
 
 //_________________________________________________________________________________________________
