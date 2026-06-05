@@ -69,13 +69,15 @@ void fillMatrix(int **matrix, int size) {
 //_________________________________________________________________________________________________
 
 void printMatrix(int **matrix, int size) {
-  printf("Matriz (%dx%d) : \n", size, size);
+  printf("\nMatriz (%dx%d) : \n", size, size);//se encontro que existia un error de cara al print, faltaba un \n
   for(int i = 0; i < size; i++) {
-    printf("%d", *(*(matrix +i) +j));
-    }
+        for(int j = 0; j < size; j++){ //se agraga la linea que lea los elementos en las filas 
+                printf("%d", *(*(matrix +i) +j));
+        }
     printf("\n");
   }
 }
+//esta funcion solo imprimira la matriz sin mayores situaciones 
 
 //_________________________________________________________________________________________________
 
