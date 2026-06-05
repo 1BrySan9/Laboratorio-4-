@@ -5,7 +5,7 @@
                  //como semilla para crear una matriz aleatoria
 //_________________________________________________________________________________________________
 
-void findLargesLine(int **matrix, int size, int *result) {
+void findLargestLine(int **matrix, int size, int *result) {
 //esta funcion debe buscar la linea mas larga en el segundo puntero
         int actual = 0;
         int maximo = 0;
@@ -16,15 +16,14 @@ void findLargesLine(int **matrix, int size, int *result) {
         for(int i = 0; i < size * size; i++) {
                 if(*(ptr + i) == 1) {
                         actual++;
-                }
 //este if busca que cada elemento en la linea sea 1 para seguir al siguiente elemento
-//si el elemento es 1, aumenta el conteo de actual, es decir, el conteo de 1s. 
-                if(actual > maximo) {
-                        maximo = actual;
+//si el elemento es 1, aumenta el conteo de actual, es decir, el conteo de 1s.
+                        if(actual > maximo) {
+                                maximo = actual;
 //El valor maximo se actualiza con cada vez que el if anterior lo hace
 //Si el if anterior no se cumple, todo se detiene, evitando un bucle infinito
-                }
-                else {
+                        }
+                }else {
                         actual = 0;
                 }
         }
