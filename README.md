@@ -1,4 +1,6 @@
 # Laboratorio-4
+
+//EJERCICIO 1
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h> //Al igual que en lab 3, permite tomar el tiempo del PC
@@ -89,6 +91,18 @@ void freeMatrix(int **matrix, int size) {
 
 //_________________________________________________________________________________________________
 
+// se agrega el siguiente bloque ya que de cara al reporte, se quiere mostrar la secuencia tal cual 
+void printSequence(int **matrix, int size) {
+        int *ptr = *(matrix + 0);
+        printf("\nSecuencia lineal: \n");
+        for(int i = 0; i < size * size; i++) {
+                printf("%d", *(ptr + i));
+        }
+        printf("\n");
+}
+//para su construccion, unicamente se utilizo lo ya utilizado en este mismo laboratoria para recorrer la matriz
+
+//_________________________________________________________________________________________________
 int main(void) {
         int size; //largestLine;es mejor trabajarlo por separado para evitar errores
         int largestLine = 0;
@@ -110,6 +124,7 @@ int main(void) {
         fillMatrix(matrix, size);
         printMatrix(matrix, size);
         findLargestLine(matrix, size, &largestLine);
+        printSequence(matrix, size);
         freeMatrix(matrix, size);
 
         printf("\nEl tamano de la secuencia de 1s mas grande es: %d\n", largestLine);
@@ -119,3 +134,5 @@ int main(void) {
 
 //_________________________________________________________________________________________________
 
+
+//EJERCICIO 2 
