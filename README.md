@@ -136,3 +136,47 @@ int main(void) {
 
 
 //EJERCICIO 2 
+
+#include <stdio.h>
+#include <stdlib.c>
+
+//________________________________________________________________________________________________________________
+
+unsigned char *read_pgm(const char *filename,int *width, int *height, int *max_val) {
+        FILE *fp = fopen(filename, "r");
+        if(fp == NULL) {
+                printf("Error al abrir %s\n", filename);
+                return NULL;
+}
+char magic[3]; //en este ejercicio no existe la restriccion del no uso de [], por eso, se puede utilizar
+
+}
+
+//________________________________________________________________________________________________________________
+
+void apply_threshold (unsigned char *pixels, int total, int threshold) {
+}
+
+//________________________________________________________________________________________________________________
+
+unsigned char *make_negative(unsigned char *pixels, int total) {
+}
+
+//________________________________________________________________________________________________________________
+
+void write_pgm(const char *filename, unsigned char *pixels, int width, int height, int max_val) {
+}
+
+//________________________________________________________________________________________________________________
+
+void print_stats(unsigned char *original, unsigned char *thresholded, int total) {
+}
+
+//________________________________________________________________________________________________________________
+
+int main(void) {
+  int width, height, max_val, threshold;
+  unsigned char *pixels = NULL;
+  unsigned char *negative = NULL;
+  return 0;
+}
