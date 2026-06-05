@@ -1,12 +1,10 @@
 # Laboratorio-4
 #include <stdio.h>
 #include <stdlib.h>
-
-//_________________________________________________________________________________________________
-
-void finLargesLine(int **matrix, int size, int *result) {
 #include <time.h> //Al igual que en lab 3, permite tomar el tiempo del PC
                  //como semilla para crear una matriz aleatoria
+//_________________________________________________________________________________________________
+
 void finLargesLine(int **matrix, int size, int *result) {
 //esta funcion debe buscar la linea mas larga en el segundo puntero
         int actual = 0;
@@ -93,10 +91,31 @@ void freeMatrix(int **matrix, int size) {
 //_________________________________________________________________________________________________
 
 int main(void) {
-  int size, largestLine;
-  int **matrix = NULL; 
-  printf("El tamano de la secuencia de 1s mas grande es: %d\n", largestLine);
-  return 0;
+        int size; //largestLine;es mejor trabajarlo por separado para evitar errores
+        int largestLine = 0;
+        int **matrix = NULL; 
+
+        srand((unsigned)time(NULL)); //esto es para tomar una semilla aleatroia usando el tiempo 
+
+        printf("Ingrese el tamano de la matriz:");
+        scanf("d%", &size); //el valor de size determiona demasiados puntos  
+                           // se opta que sea el usuario quien modifique el tamaño en lugar de partir de un valor definido
+
+        if(size <= 0){
+                printf("Tamano invalido \n");
+                return 1; //evitar valores que genere problemas de creacion de matrices
+        }
+
+        //ahora se llamaran a las funciones creadas con anterioridad 
+        allocateMatrix(&matrix, size);
+        fillMatrix(matrix, size);
+        printMatrix(natrix, size);
+        findLargestLine(matrix, size, &largestLine);
+        freeMatrix(matrix, size);
+
+        printf("\nEl tamano de la secuencia de 1s mas grande es: %d\n", largestLine);
+        //el mismo fallo que en lineas superiores, hacia falta un \n
+        return 0;
 }
 
 //_________________________________________________________________________________________________
