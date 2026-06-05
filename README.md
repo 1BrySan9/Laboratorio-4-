@@ -5,7 +5,7 @@
                  //como semilla para crear una matriz aleatoria
 //_________________________________________________________________________________________________
 
-void finLargesLine(int **matrix, int size, int *result) {
+void findLargesLine(int **matrix, int size, int *result) {
 //esta funcion debe buscar la linea mas larga en el segundo puntero
         int actual = 0;
         int maximo = 0;
@@ -98,7 +98,7 @@ int main(void) {
         srand((unsigned)time(NULL)); //esto es para tomar una semilla aleatroia usando el tiempo 
 
         printf("Ingrese el tamano de la matriz:");
-        scanf("d%", &size); //el valor de size determiona demasiados puntos  
+        scanf("%d", &size); //el valor de size determiona demasiados puntos  
                            // se opta que sea el usuario quien modifique el tamaño en lugar de partir de un valor definido
 
         if(size <= 0){
@@ -109,7 +109,7 @@ int main(void) {
         //ahora se llamaran a las funciones creadas con anterioridad 
         allocateMatrix(&matrix, size);
         fillMatrix(matrix, size);
-        printMatrix(natrix, size);
+        printMatrix(matrix, size);
         findLargestLine(matrix, size, &largestLine);
         freeMatrix(matrix, size);
 
