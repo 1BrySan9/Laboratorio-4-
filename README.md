@@ -56,6 +56,14 @@ void allocateMatrix(int ***matrix, int size) {
 //_________________________________________________________________________________________________
 
 void fillMatrix(int **matrix, int size) {
+//al igual que en el lab 3, se debe usar algo que aleatorice la seleccion de numeros, por eso el uso de rand() % 2
+//ademas, por eso se requiere incluir el tiempo como forma de generar un numero aleatorio mediante <time.h>
+//se usa un ciclo porque debe analizarse columna y fila, y que lo haga elemento a elemento 
+        for(int i = 0; i < size; i++){
+                for(int j = 0; j < size; j++){
+                        *(*(matrix + i) +j) = rand() % 2; //se anida para que sea elemento a elemento 
+                }
+        }
 }
 
 //_________________________________________________________________________________________________
