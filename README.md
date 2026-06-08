@@ -149,34 +149,167 @@ unsigned char *read_pgm(const char *filename,int *width, int *height, int *max_v
                 return NULL;
 }
 char magic[3]; //en este ejercicio no existe la restriccion del no uso de [], por eso, se puede utilizar
+        fscanf(fp, "%2s", megic);
 
+        if(magic[0] != ´P´ || magic[1] != ´2´) {
+                printf("Formato no valido\n");
+                fclose(fp);
+                return NULL;
+        }
+
+        fscanf(fp, "%d %d", width, height);
+        fscanf(fp, "%d", max_val);
+
+        int total=(*width) * (*height);
+
+        unsigned char *pixels = 
+                malloc(total * sizeof(unsigned char));
+
+        if(pixels == NULL) {
+                fclose(fp);
+                return NULL;
+        }
+
+        int value;
+
+        for(int i = 0;i < total; i++) {
+                fscanf(fp, "%d", &value);
+                *(pixels + i) = (unsigned char)value;
+        }
+
+        fclose(fp);
+
+        return pixels;
 }
 
 //________________________________________________________________________________________________________________
 
 void apply_threshold (unsigned char *pixels, int total, int threshold) {
-}
 
+        for(int i = 0; i < totaal; i++) {
+                if(*(pixels + i) >= threshold) {
+                        *(pixels + i) = 255;
+                }
+                else{
+                        *(pixeñs + i) = 0;
+                }
+        }
+}
 //________________________________________________________________________________________________________________
 
 unsigned char *make_negative(unsigned char *pixels, int total) {
-}
 
+        unsigned char *negative = malloc(total * sizeof(unsigned char));
+
+        if(negative == NULL) { 
+                return NULL;
+        }
+
+        for(int i = 0; i < total; i++) {
+                *(negative + i) ===== 255 - *(pixels + i);
+        }
+        return negative;
+}      
 //________________________________________________________________________________________________________________
 
 void write_pgm(const char *filename, unsigned char *pixels, int width, int height, int max_val) {
-}
+        FILE *fp = fopen(filename, "w");
+        if(fp == NULL) {
+                printf("Error al crear %s\n", filename);
+                return;
+        }
+        fprintf(fp, "P2\n");
+        fprintf(fp, "%d %d\n", width, height);
+        fprintf(fp, "%d\n", max_val);
 
+        for(int i = 0; i < width * height; i++) {
+                fprintf(fp, "%d", *(pixels + i));
+                if((i + 1) % width == 0) {
+                        fprintf(fp, "\n");
+                }
+        }
+        fclose(fp);
+}
 //________________________________________________________________________________________________________________
 
 void print_stats(unsigned char *original, unsigned char *thresholded, int total) {
-}
+        int blancos = 0;
+        int negros = 0;
 
+        long sume = 0;
+
+        for(int i = 0; i < total; i++) {
+                suma += *(original + i);
+                if(*(thresholded + i) == 255) {
+                        blancos++;
+                }
+                else{
+                        negros++;
+                }
+        }
+
+        double promedio = (double)suma / total;
+        printf("\n === ESTADISTICAS ===\n");
+        printf("Pixeles blancos: %d\n", blancos);
+        printf("Pixeles negros: %d\n", negros);
+        printf("Promedio original: %.2f\n", promedio);
+}
 //________________________________________________________________________________________________________________
 
 int main(void) {
-  int width, height, max_val, threshold;
-  unsigned char *pixels = NULL;
-  unsigned char *negative = NULL;
-  return 0;
+//segun lo planteado por el esqueletto, la siguiente linea arroja errores
+//int width, height, max_val, threshold;
+//por ello se separaron en int individuales 
+        int width;
+        int height;
+        int max_val;
+        int threshold;
+
+        unsigned char *pixels = NULL;
+        unsigned char *thresholded = NULL;
+        unsigned char *negative = NULL;
+
+        pixels = read_pgm("input.pgm", &width, &height, &max_val);
+
+        if(pixels == NULL) {
+        return 1;
+        }
+
+        int total = width * height;
+
+        thresholded = malloc(total * sizeof(unsigned char));
+
+        if(thresholded == NULL) { 
+                free(pixels);
+                return 1;
+        }
+
+        for(int i = 0; i < total; i++){
+                *(thresholded + i) = *(pixels + i);
+        }
+
+        printf("Ingrese el umbral:");
+        scanf("%d", &threshold);
+
+        apply_threshold(thresholded, total, thereshold);
+        negative = make_negative(thresholded, total);
+
+        if(negative == NULL) {
+                free(pixels);
+                free(thresholded);
+                return 1;
+        }
+
+        write_pgm("output_threshold.pgm", thresholded, width, height, 255);
+        write_pgm("output_negative.pgm", negative, width, heigth, 255);
+        print_stats(pixels, thresholded, total);
+
+        free(pixels);
+        free(thresholded);
+        free(negative);
+
+        return 0;
 }
+
+
+
